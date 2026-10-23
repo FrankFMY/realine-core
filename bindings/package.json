@@ -1,0 +1,47 @@
+{
+  "name": "@frankfmy/realine-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=24",
+    "bun": ">=1.4.2"
+  },
+  "files": [
+    "dist",
+    "generated/wasm",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol.d.ts",
+      "import": "./dist/protocol.js"
+    },
+    "./lists": {
+      "types": "./dist/lists.d.ts",
+      "import": "./dist/lists.js"
+    },
+    "./wasm": "./generated/wasm/realine_core_bg.wasm",
+    "./window": {
+      "types": "./dist/window.d.ts",
+      "import": "./dist/window.js"
+    }
+  },
+  "scripts": {
+    "build": "bun --no-env-file scripts/build.ts",
+    "sync": "bun --no-env-file scripts/build.ts --check-protocol",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "test": "bun --no-env-file test tests --max-concurrency 1"
+  },
+  "license": "MIT OR Apache-2.0",
+  "description": "Scoped realtime streams, presence and stable list windows powered by Rust and WebAssembly",
+  "author": { "name": "Artem Prianishnikov", "url": "https://github.com/FrankFMY" },
+  "repository": { "type": "git", "url": "https://github.com/FrankFMY/realine-core.git", "directory": "bindings" },
+  "homepage": "https://github.com/FrankFMY/realine-core#readme",
+  "bugs": { "url": "https://github.com/FrankFMY/realine-core/issues" }
+}

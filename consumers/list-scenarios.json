@@ -1,0 +1,564 @@
+{
+	"request": {
+		"query": {
+			"scope": {
+				"product": "dispatch",
+				"tenant": "company-a",
+				"resource": "fleet",
+				"channel": "changes"
+			},
+			"projection": "public-v1",
+			"access": "dispatchers-v1",
+			"filter": {
+				"active": true
+			},
+			"sort": [
+				{
+					"field": "name",
+					"direction": "asc",
+					"missing": "last"
+				}
+			],
+			"limit": 3
+		},
+		"after": null
+	},
+	"config": {
+		"stream": {
+			"max_events": 4,
+			"max_buffer_bytes": 65536,
+			"max_payload_bytes": 32768
+		},
+		"max_rows": 3,
+		"max_retained_bytes": 65536
+	},
+	"inputs": [
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "open",
+					"grant": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"actor_id": "operator",
+						"session_id": "session",
+						"permission_version": "1",
+						"expires_at_ms": 10000
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "snapshot",
+					"snapshot": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 1,
+						"epoch": "list-db",
+						"revision": "10",
+						"data": {
+							"request_key": "",
+							"rows": [
+								{
+									"id": "a",
+									"revision": "1",
+									"value": {
+										"name": "A",
+										"available": false,
+										"load": 0,
+										"note": null
+									}
+								},
+								{
+									"id": "b",
+									"revision": "1",
+									"value": {
+										"name": "B",
+										"available": false,
+										"load": 0
+									}
+								},
+								{
+									"id": "c",
+									"revision": "1",
+									"value": {
+										"name": "C",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "custody",
+				"custody": {
+					"focus": "b",
+					"selection": ["b"],
+					"anchor": {
+						"id": "b",
+						"offset_px": -21
+					},
+					"dirty": ["b"]
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "event",
+					"event": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 1,
+						"epoch": "list-db",
+						"previous": "10",
+						"revision": "12",
+						"data": {
+							"request_key": "",
+							"upserts": [
+								{
+									"id": "d",
+									"revision": "1",
+									"value": {
+										"name": "D",
+										"available": false,
+										"load": 0
+									}
+								},
+								{
+									"id": "b",
+									"revision": "2",
+									"value": {
+										"name": "B edited",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"order": ["d", "c", "b"],
+							"departures": [
+								{
+									"id": "a",
+									"reason": "deleted"
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "accept"
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "event",
+					"event": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 1,
+						"epoch": "list-db",
+						"previous": "12",
+						"revision": "14",
+						"data": {
+							"request_key": "",
+							"upserts": [],
+							"order": ["d", "c"],
+							"departures": [
+								{
+									"id": "b",
+									"reason": "filter_exit"
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "accept"
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "custody",
+				"custody": {
+					"focus": "b",
+					"selection": ["b"],
+					"anchor": {
+						"id": "b",
+						"offset_px": -21
+					},
+					"dirty": []
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "accept"
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "disconnect"
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "open",
+					"grant": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"actor_id": "operator",
+						"session_id": "session",
+						"permission_version": "1",
+						"expires_at_ms": 10000
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "snapshot",
+					"snapshot": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 2,
+						"epoch": "list-db",
+						"revision": "14",
+						"data": {
+							"request_key": "",
+							"rows": [
+								{
+									"id": "d",
+									"revision": "1",
+									"value": {
+										"name": "D",
+										"available": false,
+										"load": 0
+									}
+								},
+								{
+									"id": "c",
+									"revision": "1",
+									"value": {
+										"name": "C",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "event",
+					"event": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 2,
+						"epoch": "list-db",
+						"previous": "15",
+						"revision": "16",
+						"data": {
+							"request_key": "",
+							"upserts": [],
+							"order": ["d", "c"],
+							"departures": [],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "snapshot",
+					"snapshot": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 2,
+						"epoch": "list-db",
+						"revision": "16",
+						"data": {
+							"request_key": "",
+							"rows": [
+								{
+									"id": "d",
+									"revision": "1",
+									"value": {
+										"name": "D",
+										"available": false,
+										"load": 0
+									}
+								},
+								{
+									"id": "c",
+									"revision": "1",
+									"value": {
+										"name": "C",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "snapshot",
+					"snapshot": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 3,
+						"epoch": "list-db",
+						"revision": "16",
+						"data": {
+							"request_key": "",
+							"rows": [
+								{
+									"id": "d",
+									"revision": "1",
+									"value": {
+										"name": "D",
+										"available": false,
+										"load": 0
+									}
+								},
+								{
+									"id": "c",
+									"revision": "1",
+									"value": {
+										"name": "C",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "revoke"
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "event",
+					"event": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 3,
+						"epoch": "list-db",
+						"previous": "16",
+						"revision": "18",
+						"data": {
+							"request_key": "",
+							"upserts": [],
+							"order": ["d", "c"],
+							"departures": [],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "open",
+					"grant": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"actor_id": "operator",
+						"session_id": "new-session",
+						"permission_version": "2",
+						"expires_at_ms": 10000
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "snapshot",
+					"snapshot": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"generation": 4,
+						"epoch": "list-db",
+						"revision": "18",
+						"data": {
+							"request_key": "",
+							"rows": [
+								{
+									"id": "e",
+									"revision": "1",
+									"value": {
+										"name": "E",
+										"available": false,
+										"load": 0
+									}
+								}
+							],
+							"next": null
+						}
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "dispose"
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "stream",
+				"action": {
+					"kind": "open",
+					"grant": {
+						"scope": {
+							"product": "dispatch",
+							"tenant": "company-a",
+							"resource": "fleet",
+							"channel": "changes"
+						},
+						"actor_id": "operator",
+						"session_id": "new-session",
+						"permission_version": "2",
+						"expires_at_ms": 10000
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "view"
+			}
+		}
+	]
+}

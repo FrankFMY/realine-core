@@ -1,0 +1,545 @@
+{
+	"scope": {
+		"product": "dispatch",
+		"tenant": "company-a",
+		"resource": "fleet",
+		"channel": "changes"
+	},
+	"grant": {
+		"scope": {
+			"product": "dispatch",
+			"tenant": "company-a",
+			"resource": "fleet",
+			"channel": "changes"
+		},
+		"actor_id": "operator",
+		"session_id": "session",
+		"permission_version": "1",
+		"expires_at_ms": 10000
+	},
+	"key": {
+		"actor_id": "operator",
+		"session_id": "session",
+		"connection_id": "owned-connection"
+	},
+	"config": {
+		"max_events": 2,
+		"max_buffer_bytes": 1024,
+		"max_payload_bytes": 512
+	},
+	"presence_config": {
+		"idle_after_ms": 100,
+		"uncertain_after_ms": 50,
+		"offline_after_ms": 200
+	},
+	"stream": [
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "open",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				}
+			}
+		},
+		{
+			"now_ms": 101,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 1,
+					"epoch": "one",
+					"revision": "10",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 102,
+			"action": {
+				"kind": "take",
+				"limit": 2
+			}
+		},
+		{
+			"now_ms": 103,
+			"action": {
+				"kind": "event",
+				"event": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 1,
+					"epoch": "one",
+					"previous": "10",
+					"revision": "15",
+					"data": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 104,
+			"action": {
+				"kind": "event",
+				"event": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 1,
+					"epoch": "one",
+					"previous": "10",
+					"revision": "15",
+					"data": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 105,
+			"action": {
+				"kind": "event",
+				"event": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 1,
+					"epoch": "one",
+					"previous": "18",
+					"revision": "19",
+					"data": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 106,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 1,
+					"epoch": "one",
+					"revision": "19",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 107,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 2,
+					"epoch": "one",
+					"revision": "18",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 108,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 2,
+					"epoch": "one",
+					"revision": "19",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 109,
+			"action": {
+				"kind": "event",
+				"event": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 2,
+					"epoch": "one",
+					"previous": "19",
+					"revision": "20",
+					"data": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 110,
+			"action": {
+				"kind": "event",
+				"event": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 2,
+					"epoch": "one",
+					"previous": "20",
+					"revision": "21",
+					"data": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 111,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 3,
+					"epoch": "one",
+					"revision": "21",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 112,
+			"action": {
+				"kind": "take",
+				"limit": 2
+			}
+		},
+		{
+			"now_ms": 113,
+			"action": {
+				"kind": "disconnect"
+			}
+		},
+		{
+			"now_ms": 114,
+			"action": {
+				"kind": "open",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				}
+			}
+		},
+		{
+			"now_ms": 115,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 4,
+					"epoch": "one",
+					"revision": "20",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 116,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 4,
+					"epoch": "two",
+					"revision": "0",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 117,
+			"action": {
+				"kind": "snapshot",
+				"snapshot": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"generation": 5,
+					"epoch": "two",
+					"revision": "0",
+					"data": {
+						"text": "Присутствие / presence",
+						"count": 0,
+						"flag": false,
+						"value": null
+					}
+				}
+			}
+		},
+		{
+			"now_ms": 118,
+			"action": {
+				"kind": "revoke"
+			}
+		},
+		{
+			"now_ms": 119,
+			"action": {
+				"kind": "take",
+				"limit": 2
+			}
+		},
+		{
+			"now_ms": 120,
+			"action": {
+				"kind": "open",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				}
+			}
+		},
+		{
+			"now_ms": 10000,
+			"action": {
+				"kind": "tick"
+			}
+		},
+		{
+			"now_ms": 10001,
+			"action": {
+				"kind": "dispose"
+			}
+		},
+		{
+			"now_ms": 10002,
+			"action": {
+				"kind": "view"
+			}
+		}
+	],
+	"presence": [
+		{
+			"now_ms": 100,
+			"action": {
+				"kind": "prepare",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				},
+				"signal": "active"
+			}
+		},
+		{
+			"now_ms": 101,
+			"action": {
+				"kind": "commit",
+				"ticket": 1,
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				}
+			}
+		},
+		{
+			"now_ms": 110,
+			"action": {
+				"kind": "prepare",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				},
+				"signal": "idle"
+			}
+		},
+		{
+			"now_ms": 111,
+			"action": {
+				"kind": "view"
+			}
+		},
+		{
+			"now_ms": 112,
+			"action": {
+				"kind": "pending",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "2",
+					"expires_at_ms": 10000
+				}
+			}
+		},
+		{
+			"now_ms": 113,
+			"action": {
+				"kind": "prepare",
+				"grant": {
+					"scope": {
+						"product": "dispatch",
+						"tenant": "company-a",
+						"resource": "fleet",
+						"channel": "changes"
+					},
+					"actor_id": "operator",
+					"session_id": "session",
+					"permission_version": "1",
+					"expires_at_ms": 10000
+				},
+				"signal": "active"
+			}
+		},
+		{
+			"now_ms": 114,
+			"action": {
+				"kind": "dispose"
+			}
+		},
+		{
+			"now_ms": 115,
+			"action": {
+				"kind": "view"
+			}
+		}
+	]
+}

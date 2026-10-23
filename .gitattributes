@@ -1,0 +1,5 @@
+* text=auto
+*.bat text eol=crlf
+# Preserve upstream notices and unified diff context verbatim.
+licenses/rust-1.94.0/COPYRIGHT-library.html whitespace=-blank-at-eol
+patches/bun-types@1.4.2.patch whitespace=-blank-at-eol

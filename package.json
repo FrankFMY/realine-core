@@ -1,0 +1,43 @@
+{
+  "name": "realine-core-development",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT OR Apache-2.0",
+  "author": { "name": "Artem Prianishnikov", "url": "https://github.com/FrankFMY" },
+  "repository": { "type": "git", "url": "https://github.com/FrankFMY/realine-core.git" },
+  "homepage": "https://github.com/FrankFMY/realine-core#readme",
+  "bugs": { "url": "https://github.com/FrankFMY/realine-core/issues" },
+  "type": "module",
+  "workspaces": [
+    "bindings"
+  ],
+  "engines": {
+    "node": ">=24",
+    "bun": ">=1.4.2"
+  },
+  "scripts": {
+    "build": "bun --no-env-file bindings/scripts/build.ts",
+    "protocol:generate": "bun --no-env-file bindings/scripts/build.ts --protocol",
+    "protocol:check": "bun --no-env-file bindings/scripts/build.ts --check-protocol",
+    "check": "tsc --noEmit -p bindings/tsconfig.json",
+    "lint": "oxlint --deny-warnings --config .oxlintrc.json bindings/src bindings/tests bindings/scripts scripts consumers --ignore-pattern consumers/negative.ts",
+    "test": "bun --no-env-file test bindings/tests --max-concurrency 1",
+    "test:native": "node scripts/cargo.mjs test --locked --all-targets",
+    "format:check": "node scripts/cargo.mjs fmt --all -- --check",
+    "check:native": "node scripts/cargo.mjs check --locked --all-targets",
+    "clippy": "node scripts/cargo.mjs clippy --locked --all-targets -- -D warnings",
+    "pack": "bun --no-env-file pm pack --cwd bindings",
+    "test:consumers": "node scripts/verify-consumers.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.2",
+    "@playwright/test": "1.64.1",
+    "@types/bun": "1.4.2",
+    "@types/node": "24.19.2",
+    "oxlint": "1.89.0",
+    "typescript": "7.0.2"
+  },
+  "patchedDependencies": {
+    "bun-types@1.4.2": "patches/bun-types@1.4.2.patch"
+  }
+}

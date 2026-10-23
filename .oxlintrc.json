@@ -1,0 +1,14 @@
+{
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "**/generated/**",
+    "**/dist/**",
+    "**/node_modules/**"
+  ]
+}

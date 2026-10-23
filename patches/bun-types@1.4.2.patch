@@ -1,0 +1,36 @@
+--- a/globals.d.ts
++++ b/globals.d.ts
+@@ -317,7 +317,7 @@
+    * @param src The text to encode.
+    * @param dest The array that receives the encoded bytes.
+    */
+-  encodeInto(src?: string, dest?: Bun.BufferSource): import("node:util").TextEncoderEncodeIntoResult;
++  encodeInto(src?: string, dest?: Bun.BufferSource): { read: number; written: number };
+ }
+ declare var TextEncoder: Bun.__internal.UseLibDomIfAvailable<
+   "TextEncoder",
+--- a/overrides.d.ts
++++ b/overrides.d.ts
+@@ -349,7 +349,7 @@
+ }
+ 
+ declare module "node:tls" {
+-  interface BunConnectionOptions extends Omit<ConnectionOptions, "key" | "ca" | "tls" | "cert"> {
++  interface BunConnectionOptions extends Omit<import("node:tls").ConnectionOptions, "key" | "ca" | "tls" | "cert"> {
+     /**
+      * Override the trusted CA certificates. The default is the list of
+      * well-known CAs curated by Mozilla; setting this option replaces
+@@ -387,11 +387,11 @@
+       | Buffer
+       | Bun.BunFile
+       | NodeJS.TypedArray
+-      | Array<string | Buffer | Bun.BunFile | NodeJS.TypedArray | KeyObject>
++      | Array<string | Buffer | Bun.BunFile | NodeJS.TypedArray | import("node:crypto").KeyObject>
+       | undefined;
+   }
+ 
+-  function connect(options: BunConnectionOptions, secureConnectListener?: () => void): TLSSocket;
++  function connect(options: BunConnectionOptions, secureConnectListener?: () => void): import("node:tls").TLSSocket;
+ }
+ 
+ declare module "console" {
