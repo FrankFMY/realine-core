@@ -35,7 +35,7 @@ gh release download v0.1.0 --repo FrankFMY/realine-core --dir realine-core-relea
 npm install ./realine-core-release/frankfmy-realine-core-0.1.0.tgz
 ```
 
-These instructions do not imply that a registry package or hosted verification run exists.
+These instructions do not imply that a registry package exists.
 For Bun, replace the final `npm install` command with `bun add` using the same local archive;
 keep the download and checksum commands chained before it.
 You can also build and pack the source below. The installed package needs no Rust compiler
@@ -176,6 +176,17 @@ node scripts/cargo.mjs package --locked --allow-dirty
 The toolchain file selects a local toolchain; no default/global toolchain switch is needed. The
 wrapper uses one `target/` and remaps compiler paths. See [BUILD.md](BUILD.md) for packed-project
 checks and the limits of reproducibility. Hosted workflows are not required for local verification.
+
+## Continuous integration
+
+[CI runs](https://github.com/FrankFMY/realine-core/actions/workflows/ci.yml) run on
+pull requests, pushes to `main`, and manual dispatch with Node 24.20.0, Bun 1.4.2,
+the repository-pinned Rust 1.94.0 toolchain and wasm-bindgen 0.2.105.
+They cover formatting, native check/Clippy/tests, genuine Wasm generation,
+protocol freshness, binding types/lint/tests, dependency audit and
+`test:consumers`: independent crate/Node/Bun/Chromium/WebKit parity and cold
+constructors. Logs and consumer receipts are retained for seven days.
+The workflow does not publish to npm or crates.io.
 
 ## Author and contact
 
