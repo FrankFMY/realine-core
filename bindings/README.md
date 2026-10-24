@@ -54,7 +54,7 @@ Full [MIT](dist/LICENSE-MIT), [Apache](dist/LICENSE-APACHE) and
 
 Created and maintained by [Artem Prianishnikov (Артем Прянишников / FrankFMY)](https://github.com/FrankFMY).
 
-- Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
+- Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com) · [frankfmy@proton.me](mailto:frankfmy@proton.me)
 - Telegram: [@FrankFMY](https://t.me/FrankFMY)
 - Website: [frankfmy.com](https://frankfmy.com)
 - Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY) · [npm](https://www.npmjs.com/~frankfmy)
