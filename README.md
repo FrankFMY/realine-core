@@ -24,8 +24,16 @@ for the Rust algorithms, and no fallback when Wasm is unavailable.
 
 ## Install an artifact
 
-The JavaScript artifact is an ESM package named `@frankfmy/realine-core`, version 0.1.0. Registry
-publication is disabled. Download and verify the assets from the
+The JavaScript artifact is an ESM package named `@frankfmy/realine-core`, version 0.1.1.
+It is configured for public npm distribution. Check the exact registry version before installing:
+
+```sh
+npm view @frankfmy/realine-core@0.1.1 version &&
+npm install @frankfmy/realine-core@0.1.1
+```
+
+Registry publication is separate from verification. If that version is unavailable, build from
+source or download and verify the immutable assets from the
 [v0.1.0 release](https://github.com/FrankFMY/realine-core/releases/tag/v0.1.0) before installation:
 
 ```sh
@@ -35,13 +43,13 @@ gh release download v0.1.0 --repo FrankFMY/realine-core --dir realine-core-relea
 npm install ./realine-core-release/frankfmy-realine-core-0.1.0.tgz
 ```
 
-These instructions do not imply that a registry package exists.
+The v0.1.0 download instructions remain independent of registry availability.
 For Bun, replace the final `npm install` command with `bun add` using the same local archive;
 keep the download and checksum commands chained before it.
 You can also build and pack the source below. The installed package needs no Rust compiler
 and has no runtime npm dependencies.
 
-For native Rust, unpack `realine-core-0.1.0.crate` (a gzip tar archive) and use a path dependency:
+For native Rust using the v0.1.0 GitHub release, unpack `realine-core-0.1.0.crate` (a gzip tar archive) and use a path dependency:
 
 ```toml
 [dependencies]
