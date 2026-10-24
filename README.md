@@ -22,19 +22,18 @@ This is not a server, database, authorization policy, query language, UI framewo
 controller. It creates no sockets, timers or background services. There is no JavaScript replacement
 for the Rust algorithms, and no fallback when Wasm is unavailable.
 
-## Install an artifact
+## Install from npm
 
-The JavaScript artifact is an ESM package named `@frankfmy/realine-core`, version 0.1.1.
-It is configured for public npm distribution. Check the exact registry version before installing:
+The ESM package [@frankfmy/realine-core on npm](https://www.npmjs.com/package/@frankfmy/realine-core)
+is available at version **0.1.1**, including the compiled Rust WebAssembly module.
 
 ```sh
-npm view @frankfmy/realine-core@0.1.1 version &&
 npm install @frankfmy/realine-core@0.1.1
 ```
 
-Registry publication is separate from verification. If that version is unavailable, build from
-source or download and verify the immutable assets from the
-[v0.1.0 release](https://github.com/FrankFMY/realine-core/releases/tag/v0.1.0) before installation:
+Source builds and the older, immutable assets from the
+[v0.1.0 release](https://github.com/FrankFMY/realine-core/releases/tag/v0.1.0) remain alternatives.
+The archive is a different version from npm 0.1.1. Download and verify it before installation:
 
 ```sh
 # gh is only needed for this download; alternatively use the release page.

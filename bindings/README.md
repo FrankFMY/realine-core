@@ -2,15 +2,15 @@
 
 Typed ESM bindings to `realine-core` 0.1.1. The package contains the real Rust WebAssembly module,
 its generated loader and declarations. There is no JavaScript replacement and no runtime npm
-dependency. Check the exact npm version before installation:
+dependency. Version **0.1.1** is available as
+[@frankfmy/realine-core on npm](https://www.npmjs.com/package/@frankfmy/realine-core).
 
 ```sh
-npm view @frankfmy/realine-core@0.1.1 version &&
 npm install @frankfmy/realine-core@0.1.1
 ```
 
-Publication is separate from verification. Source builds and the immutable v0.1.0 GitHub
-archive remain alternatives:
+Source builds and the older, immutable **v0.1.0** GitHub archive remain alternatives.
+The archive is a different version from npm 0.1.1:
 
 ```sh
 gh release download v0.1.0 --repo FrankFMY/realine-core --dir realine-core-release &&
