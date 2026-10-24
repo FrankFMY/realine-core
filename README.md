@@ -202,7 +202,7 @@ Created and maintained by [Artem Prianishnikov (Артем Прянишнико�
 - Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
 - Telegram: [@FrankFMY](https://t.me/FrankFMY)
 - Website: [frankfmy.com](https://frankfmy.com)
-- Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY)
+- Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY) · [npm](https://www.npmjs.com/~frankfmy)
 
 ## License
 Licensed under **MIT OR Apache-2.0**, at your option. Copyright 2026 Artem Prianishnikov (FrankFMY).
