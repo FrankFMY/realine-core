@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare owned temporary directory
+        run: |
+          CI_TEMP="$RUNNER_TEMP/library-ci-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          mkdir -p "$CI_TEMP"
+          printf 'CI_TEMP=%s\nTMPDIR=%s\n' "$CI_TEMP" "$CI_TEMP" >> "$GITHUB_ENV"
+          df -h .
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.20.0'
+          package-manager-cache: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: '1.4.2'
+          no-cache: true
+      - name: Install locked JavaScript dependencies
+        run: bun --no-env-file install --frozen-lockfile --ignore-scripts
+      - name: Install repository-pinned Rust toolchain
+        run: |
+          rustup show active-toolchain
+          rustc --version
+          cargo --version
+      - name: Install pinned wasm-bindgen binary
+        run: |
+          curl --fail --location --output "$CI_TEMP/wasm-bindgen.tar.gz" \
+            https://github.com/wasm-bindgen/wasm-bindgen/releases/download/0.2.105/wasm-bindgen-0.2.105-x86_64-unknown-linux-musl.tar.gz
+          printf '%s  %s\n' b391448c4926ac4b11425a6752484d85164e72489d97804461d5e868c643b88a "$CI_TEMP/wasm-bindgen.tar.gz" | sha256sum --check
+          tar -xzf "$CI_TEMP/wasm-bindgen.tar.gz" -C "$CI_TEMP"
+          printf '%s\n' "$CI_TEMP/wasm-bindgen-0.2.105-x86_64-unknown-linux-musl" >> "$GITHUB_PATH"
+      - name: Install pinned Chromium, WebKit and system dependencies
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: .qualification/browsers
+        run: bun x --no-install playwright install --with-deps chromium webkit
+      - name: Rust formatting, check, Clippy and native tests
+        run: |
+          bun run format:check 2>&1 | tee "$CI_TEMP/format.log"
+          bun run check:native 2>&1 | tee "$CI_TEMP/native-check.log"
+          bun run clippy 2>&1 | tee "$CI_TEMP/clippy.log"
+          bun run test:native 2>&1 | tee "$CI_TEMP/native-test.log"
+      - name: Genuine Wasm build, generated protocol, types, lint and binding tests
+        run: |
+          bun run protocol:check 2>&1 | tee "$CI_TEMP/protocol.log"
+          bun run build 2>&1 | tee "$CI_TEMP/build.log"
+          bun run check 2>&1 | tee "$CI_TEMP/types.log"
+          bun run lint 2>&1 | tee "$CI_TEMP/lint.log"
+          bun run test 2>&1 | tee "$CI_TEMP/bindings.log"
+      - name: Independent crate, Node, Bun and real browser consumers including cold constructors
+        run: node scripts/verify-consumers.mjs "$CI_TEMP/receipts" 2>&1 | tee "$CI_TEMP/consumers.log"
+      - name: Dependency audit
+        run: bun --no-env-file audit --json 2>&1 | tee "$CI_TEMP/audit.log"
+      - name: Verify tracked source remains unchanged
+        run: git diff --exit-code
+      - name: Retain qualification logs and consumer receipts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qualification-${{ github.sha }}
+          path: |
+            ${{ env.CI_TEMP }}/*.log
+            ${{ env.CI_TEMP }}/receipts/*.json
+            ${{ env.CI_TEMP }}/receipts/*.log
+            .qualification/consumer-*/*.tgz
+            .qualification/consumer-*/*.crate
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Clean owned temporary allocations
+        if: always()
+        run: |
+          if [[ -n "${CI_TEMP:-}" ]]; then rm -rf -- "$CI_TEMP"; fi
