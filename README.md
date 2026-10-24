@@ -177,7 +177,16 @@ The toolchain file selects a local toolchain; no default/global toolchain switch
 wrapper uses one `target/` and remaps compiler paths. See [BUILD.md](BUILD.md) for packed-project
 checks and the limits of reproducibility. Hosted workflows are not required for local verification.
 
-[Artem Prianishnikov (FrankFMY)](https://github.com/FrankFMY) maintains this project.
+## Author and contact
+
+Created and maintained by [Artem Prianishnikov (Артем Прянишников / FrankFMY)](https://github.com/FrankFMY).
+
+- Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
+- Telegram: [@FrankFMY](https://t.me/FrankFMY)
+- Website: [frankfmy.com](https://frankfmy.com)
+- Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY)
+
+## License
 Licensed under **MIT OR Apache-2.0**, at your option. Copyright 2026 Artem Prianishnikov (FrankFMY).
 See [LICENSE-MIT](LICENSE-MIT), [LICENSE-APACHE](LICENSE-APACHE), and
 [third-party notices](THIRD-PARTY-NOTICES.md), including Unicode-3.0 and ts-rs notices.

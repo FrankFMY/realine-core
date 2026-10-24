@@ -40,7 +40,7 @@
   },
   "license": "MIT OR Apache-2.0",
   "description": "Scoped realtime streams, presence and stable list windows powered by Rust and WebAssembly",
-  "author": { "name": "Artem Prianishnikov", "url": "https://github.com/FrankFMY" },
+  "author": { "name": "Artem Prianishnikov", "email": "Pryanishnikovartem@gmail.com", "url": "https://frankfmy.com" },
   "repository": { "type": "git", "url": "https://github.com/FrankFMY/realine-core.git", "directory": "bindings" },
   "homepage": "https://github.com/FrankFMY/realine-core#readme",
   "bugs": { "url": "https://github.com/FrankFMY/realine-core/issues" }
