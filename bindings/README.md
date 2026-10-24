@@ -42,3 +42,12 @@ Dispose or stop owned handles. Cancellation cannot undo external storage or quer
 MIT OR Apache-2.0, at your option. Copyright 2026 Artem Prianishnikov (FrankFMY).
 Full [MIT](dist/LICENSE-MIT), [Apache](dist/LICENSE-APACHE) and
 [third-party notices](dist/THIRD-PARTY-NOTICES.md) are included, with Unicode-3.0 and ts-rs notices.
+
+## Author and contact
+
+Created and maintained by [Artem Prianishnikov (Артем Прянишников / FrankFMY)](https://github.com/FrankFMY).
+
+- Email: [Pryanishnikovartem@gmail.com](mailto:Pryanishnikovartem@gmail.com)
+- Telegram: [@FrankFMY](https://t.me/FrankFMY)
+- Website: [frankfmy.com](https://frankfmy.com)
+- Profiles: [GitHub](https://github.com/FrankFMY) · [LinkedIn](https://www.linkedin.com/in/frankfmy/) · [X](https://x.com/FrankFMY)
