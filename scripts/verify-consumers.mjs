@@ -55,11 +55,11 @@ try {
 	);
 	assert(existsSync(tgz));
 	// Regenerate this owned output from an empty file, including when a file list shrinks.
-	rmSync(join(root, "target/package/realine-core-0.1.0.crate"), { force: true });
+	rmSync(join(root, "target/package/realine-core-0.1.1.crate"), { force: true });
 	run("crate", "node", ["scripts/cargo.mjs", "package", "--locked", "--allow-dirty"]);
-	const crate = join(root, "target/package/realine-core-0.1.0.crate");
+	const crate = join(root, "target/package/realine-core-0.1.1.crate");
 	assert(existsSync(crate));
-	cpSync(crate, join(work, "realine-core-0.1.0.crate"));
+	cpSync(crate, join(work, "realine-core-0.1.1.crate"));
 	receipt.artifacts = { tarball: { path: tgz, sha256: sha(tgz) }, crate: { path: crate, sha256: sha(crate) } };
 	save();
 	const project = join(work, "project");
@@ -90,7 +90,7 @@ try {
 	const installed = join(project, "node_modules/@frankfmy/realine-core");
 	assert(realpathSync(installed).startsWith(realpathSync(project) + "/"), "consumer resolved back to workspace source");
 	const manifest = JSON.parse(readFileSync(join(installed, "package.json"), "utf8"));
-	assert.equal(manifest.private, true);
+	assert.equal(manifest.private, false);
 	assert.equal(manifest.sideEffects, false);
 	assert.equal(manifest.license, "MIT OR Apache-2.0");
 	assert.deepEqual(Object.keys(manifest.exports), [".", "./protocol", "./lists", "./wasm", "./window"]);
@@ -197,7 +197,7 @@ else{
 	cpSync(join(root, "consumers/lists.rs"), join(native, "src/lists.rs"));
 	writeFileSync(
 		join(native, "Cargo.toml"),
-		'[package]\nname="realine-independent-consumer"\nversion="0.0.0"\nedition="2024"\npublish=false\n[dependencies]\nrealine-core={path="../crate/realine-core-0.1.0"}\nserde_json="=1.0.154"\n[profile.dev]\ndebug=0\nincremental=false\n',
+		'[package]\nname="realine-independent-consumer"\nversion="0.0.0"\nedition="2024"\npublish=false\n[dependencies]\nrealine-core={path="../crate/realine-core-0.1.1"}\nserde_json="=1.0.154"\n[profile.dev]\ndebug=0\nincremental=false\n',
 	);
 	cpSync(join(root, "Cargo.lock"), join(native, "Cargo.lock"));
 	run("consumer-native-lock", "node", [join(root, "scripts/cargo.mjs"), "generate-lockfile", "--offline"], native);

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- Prepare public npm distribution with explicit registry and access metadata.
+- Document exact registry-version checks while preserving older GitHub archive installation.
+- Keep the Rust crate nonpublishable and development workspace private.
+- No runtime, declaration, dependency implementation or public API changes.
+
 ## 0.1.0
 
 Initial standalone source and artifact format:

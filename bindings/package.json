@@ -1,7 +1,8 @@
 {
   "name": "@frankfmy/realine-core",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
   "type": "module",
   "sideEffects": false,
   "engines": {

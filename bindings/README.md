@@ -1,9 +1,16 @@
 # @frankfmy/realine-core
 
-Typed ESM bindings to `realine-core` 0.1.0. The package contains the real Rust WebAssembly module,
+Typed ESM bindings to `realine-core` 0.1.1. The package contains the real Rust WebAssembly module,
 its generated loader and declarations. There is no JavaScript replacement and no runtime npm
-dependency. Registry publication is disabled; install a downloaded GitHub release tarball or build
-from source.
+dependency. Check the exact npm version before installation:
+
+```sh
+npm view @frankfmy/realine-core@0.1.1 version &&
+npm install @frankfmy/realine-core@0.1.1
+```
+
+Publication is separate from verification. Source builds and the immutable v0.1.0 GitHub
+archive remain alternatives:
 
 ```sh
 gh release download v0.1.0 --repo FrankFMY/realine-core --dir realine-core-release &&
